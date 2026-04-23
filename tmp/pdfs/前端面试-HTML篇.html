@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>前端面试-HTML篇</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="tmp\pdfs\markdown-pdf.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">前端面试-HTML篇</h1>
+</header>
+<h1 id="前端面试-html篇">前端面试 HTML篇</h1>
+<blockquote>
+<p>来源参考：<a
+href="https://www.w3cschool.cn/web_interview/web_interview-5pv93ptv.html">w3cschool《前端面试八股文
+- HTML篇》</a><br />
+说明：本文按原篇章结构整理，标题附加了思维导图中的优先级信息。优先级含义：1
+= 考察很多，2 = 考较多，3 = 考较少，4 = 考很少。</p>
+</blockquote>
+<p><img src="./w3cschool-html-images/html-mindmap.png"
+alt="HTML 面试题思维导图" /></p>
+<h2 id="1-src和href的区别优先级-1考察很多">1. src和href的区别（优先级
+1：考察很多）</h2>
+<p><code>src</code> 和 <code>href</code>
+都用于引用外部资源，但语义和加载行为不同。</p>
+<ul>
+<li><code>src</code> 表示“嵌入资源”。浏览器解析到 <code>src</code>
+时，会把目标资源下载并替换到当前标签所在位置，例如
+<code>script</code>、<code>img</code>、<code>iframe</code>。当浏览器解析到外部脚本
+<code>src</code>
+时，通常会暂停后续文档解析，直到脚本加载并执行完成。</li>
+<li><code>href</code>
+表示“建立关联”。它用于声明当前文档与外部资源的关系，例如
+<code>link</code>、<code>a</code>。浏览器遇到 CSS 的 <code>href</code>
+时会并行下载资源，不会像普通脚本那样直接阻塞 HTML 解析。</li>
+</ul>
+<p>常见记忆方式：<code>src</code> 是把资源放进页面，<code>href</code>
+是让页面和资源建立联系。</p>
+<h2 id="2-对html语义化的理解优先级-1考察很多">2.
+对HTML语义化的理解（优先级 1：考察很多）</h2>
+<p>HTML
+语义化是指根据内容含义选择合适的标签，也就是“用正确的标签表达正确的内容”。它关注的不是页面外观，而是文档结构和信息含义。</p>
+<p>语义化的优点：</p>
+<ul>
+<li>代码结构更清晰，便于团队维护。</li>
+<li>对搜索引擎更友好，有助于 SEO。</li>
+<li>对屏幕阅读器等辅助设备更友好，提升可访问性。</li>
+<li>即使 CSS 加载失败，页面仍能保留较合理的内容结构。</li>
+</ul>
+<p>常见语义化标签：</p>
+<ul>
+<li><code>header</code>：页头或区块头部。</li>
+<li><code>nav</code>：导航区域。</li>
+<li><code>main</code>：页面主体内容。</li>
+<li><code>article</code>：独立文章或内容块。</li>
+<li><code>section</code>：页面中的主题区块。</li>
+<li><code>aside</code>：侧边栏或补充信息。</li>
+<li><code>footer</code>：页脚或区块底部。</li>
+</ul>
+<h2 id="3-doctype文档类型-的作用优先级-2考较多">3. DOCTYPE(文档类型)
+的作用（优先级 2：考较多）</h2>
+<p><code>DOCTYPE</code> 是文档类型声明，用于告诉浏览器应该按照哪一种
+HTML 规范解析当前页面。它应放在 HTML 文档的第一行。</p>
+<p>HTML5 中通常写作：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span></code></pre></div>
+<p>浏览器渲染页面时主要有两种模式：</p>
+<ul>
+<li>标准模式：浏览器尽量按照 W3C
+标准解析和渲染页面，<code>document.compatMode</code> 通常为
+<code>CSS1Compat</code>。</li>
+<li>怪异模式：浏览器模拟旧版本浏览器的非标准行为，常用于兼容历史页面，<code>document.compatMode</code>
+通常为 <code>BackCompat</code>。</li>
+</ul>
+<p>缺失或错误的 <code>DOCTYPE</code>
+可能导致页面进入怪异模式，从而出现盒模型、尺寸计算等兼容问题。</p>
+<h2 id="4-script标签中defer和async的区别优先级-1考察很多">4.
+script标签中defer和async的区别（优先级 1：考察很多）</h2>
+<p>普通外部脚本、<code>defer</code>、<code>async</code> 都会影响 HTML
+解析与脚本执行的顺序。</p>
+<p><img src="./w3cschool-html-images/script-defer-async.png"
+alt="script、defer、async 加载执行对比" /></p>
+<p>图中可以理解为：HTML
+解析、脚本下载、脚本执行三件事在不同属性下的排列不同。</p>
+<ul>
+<li>普通 <code>script</code>：浏览器遇到脚本后会暂停 HTML
+解析，先下载并执行脚本，之后再继续解析。</li>
+<li><code>defer</code>：脚本异步下载，不阻塞 HTML 解析；等 HTML
+解析完成后、<code>DOMContentLoaded</code> 触发前，按文档顺序执行。</li>
+<li><code>async</code>：脚本异步下载，不阻塞 HTML
+解析；下载完成后立即执行，执行时会暂停 HTML 解析，多个
+<code>async</code> 脚本执行顺序不固定。</li>
+</ul>
+<p>适用场景：</p>
+<ul>
+<li>依赖 DOM 或依赖脚本顺序时，优先考虑 <code>defer</code>。</li>
+<li>独立脚本，例如统计、广告、埋点，适合使用 <code>async</code>。</li>
+</ul>
+<h2 id="5-常用的meta标签有哪些优先级-2考较多">5.
+常用的meta标签有哪些（优先级 2：考较多）</h2>
+<p><code>meta</code> 标签用于描述 HTML 文档的元信息，常放在
+<code>head</code>
+中。它不会直接展示在页面上，但会影响编码、搜索引擎、移动端视口等行为。</p>
+<h3 id="51-charset">5.1 charset</h3>
+<p>声明页面字符编码：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">&quot;UTF-8&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
+<h3 id="52-keywords">5.2 keywords</h3>
+<p>声明页面关键词：</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;keywords&quot;</span><span class="ot"> content</span><span class="op">=</span><span class="st">&quot;关键词&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
+<h3 id="53-description">5.3 description</h3>
+<p>声明页面描述，常用于搜索结果摘要：</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;description&quot;</span><span class="ot"> content</span><span class="op">=</span><span class="st">&quot;页面描述内容&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
+<h3 id="54-refresh">5.4 refresh</h3>
+<p>控制页面刷新或跳转：</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> http-equiv</span><span class="op">=</span><span class="st">&quot;refresh&quot;</span><span class="ot"> content</span><span class="op">=</span><span class="st">&quot;0;url=https://example.com&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
+<h3 id="55-viewport">5.5 viewport</h3>
+<p>移动端适配常用配置：</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content</span><span class="op">=</span><span class="st">&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>常见参数：</p>
+<ul>
+<li><code>width=device-width</code>：视口宽度等于设备宽度。</li>
+<li><code>initial-scale</code>：初始缩放比例。</li>
+<li><code>maximum-scale</code>：最大缩放比例。</li>
+<li><code>minimum-scale</code>：最小缩放比例。</li>
+<li><code>user-scalable</code>：是否允许用户缩放。</li>
+</ul>
+<h3 id="56-robots">5.6 robots</h3>
+<p>声明搜索引擎索引方式：</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;robots&quot;</span><span class="ot"> content</span><span class="op">=</span><span class="st">&quot;index,follow&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>常见取值：</p>
+<ul>
+<li><code>index</code>：允许索引当前页面。</li>
+<li><code>noindex</code>：不允许索引当前页面。</li>
+<li><code>follow</code>：允许继续追踪页面链接。</li>
+<li><code>nofollow</code>：不继续追踪页面链接。</li>
+</ul>
+<h2 id="6-html5有哪些更新优先级-1考察很多">6. HTML5有哪些更新（优先级
+1：考察很多）</h2>
+<p>HTML5
+相比旧版本引入了更多语义化标签、多媒体能力、表单能力、存储能力和
+API。</p>
+<h3 id="61-语义化标签">6.1 语义化标签</h3>
+<p>常见新增语义化标签包括：</p>
+<ul>
+<li><code>header</code></li>
+<li><code>nav</code></li>
+<li><code>footer</code></li>
+<li><code>article</code></li>
+<li><code>section</code></li>
+<li><code>aside</code></li>
+</ul>
+<p>这些标签让文档结构更清晰，也更适合 SEO 和可访问性场景。</p>
+<h3 id="62-媒体标签">6.2 媒体标签</h3>
+<p>音频标签：</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">audio</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;audio.mp3&quot;</span><span class="ot"> controls autoplay loop</span><span class="dt">&gt;&lt;/</span><span class="kw">audio</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>常见属性：</p>
+<ul>
+<li><code>controls</code>：显示播放控件。</li>
+<li><code>autoplay</code>：自动播放。</li>
+<li><code>loop</code>：循环播放。</li>
+</ul>
+<p>视频标签：</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">video</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;video.mp4&quot;</span><span class="ot"> poster</span><span class="op">=</span><span class="st">&quot;cover.jpg&quot;</span><span class="ot"> controls</span><span class="dt">&gt;&lt;/</span><span class="kw">video</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>常见属性：</p>
+<ul>
+<li><code>poster</code>：视频加载前显示的封面图。</li>
+<li><code>controls</code>：显示播放控件。</li>
+<li><code>width</code> / <code>height</code>：设置尺寸。</li>
+</ul>
+<p>多源兼容写法：</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">video</span><span class="ot"> controls</span><span class="dt">&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">source</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;movie.mp4&quot;</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;video/mp4&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">source</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;movie.ogg&quot;</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;video/ogg&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  当前浏览器不支持 video 标签。</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">video</span><span class="dt">&gt;</span></span></code></pre></div>
+<h3 id="63-表单">6.3 表单</h3>
+<p>新增输入类型示例：</p>
+<ul>
+<li><code>email</code></li>
+<li><code>url</code></li>
+<li><code>number</code></li>
+<li><code>range</code></li>
+<li><code>date</code></li>
+<li><code>month</code></li>
+<li><code>week</code></li>
+<li><code>time</code></li>
+<li><code>search</code></li>
+<li><code>color</code></li>
+</ul>
+<p>新增常用表单属性：</p>
+<ul>
+<li><code>placeholder</code>：输入提示。</li>
+<li><code>required</code>：必填。</li>
+<li><code>autofocus</code>：自动聚焦。</li>
+<li><code>autocomplete</code>：自动完成。</li>
+<li><code>multiple</code>：允许多选。</li>
+<li><code>pattern</code>：正则校验。</li>
+</ul>
+<h3 id="64-进度条度量器">6.4 进度条、度量器</h3>
+<p>进度条：</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">progress</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;40&quot;</span><span class="ot"> max</span><span class="op">=</span><span class="st">&quot;100&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">progress</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>度量器：</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meter</span><span class="ot"> min</span><span class="op">=</span><span class="st">&quot;0&quot;</span><span class="ot"> low</span><span class="op">=</span><span class="st">&quot;30&quot;</span><span class="ot"> high</span><span class="op">=</span><span class="st">&quot;80&quot;</span><span class="ot"> max</span><span class="op">=</span><span class="st">&quot;100&quot;</span><span class="ot"> value</span><span class="op">=</span><span class="st">&quot;60&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">meter</span><span class="dt">&gt;</span></span></code></pre></div>
+<p><code>meter</code> 常用于表示已知范围内的数值，通常需要满足：</p>
+<pre class="text"><code>min &lt; low &lt; high &lt; max</code></pre>
+<h3 id="65-dom查询操作">6.5 DOM查询操作</h3>
+<p>HTML5 增加了更方便的 DOM 查询方法：</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">&quot;.item&quot;</span>)<span class="op">;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">document</span><span class="op">.</span><span class="fu">querySelectorAll</span>(<span class="st">&quot;.item&quot;</span>)<span class="op">;</span></span></code></pre></div>
+<p>选择器写法与 CSS 选择器类似，例如类名用 <code>.class</code>，ID 用
+<code>#id</code>。</p>
+<h3 id="66-web存储">6.6 Web存储</h3>
+<p>HTML5 提供了两种常见客户端存储方式：</p>
+<ul>
+<li><code>localStorage</code>：长期存储，除非主动清除。</li>
+<li><code>sessionStorage</code>：会话级存储，页面会话结束后清除。</li>
+</ul>
+<p>示例：</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>localStorage<span class="op">.</span><span class="fu">setItem</span>(<span class="st">&quot;name&quot;</span><span class="op">,</span> <span class="st">&quot;Tom&quot;</span>)<span class="op">;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> name <span class="op">=</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(<span class="st">&quot;name&quot;</span>)<span class="op">;</span></span></code></pre></div>
+<h3 id="67-其他能力">6.7 其他能力</h3>
+<p>拖拽：</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> draggable</span><span class="op">=</span><span class="st">&quot;true&quot;</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;demo.png&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>画布：</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">canvas</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;myCanvas&quot;</span><span class="ot"> width</span><span class="op">=</span><span class="st">&quot;200&quot;</span><span class="ot"> height</span><span class="op">=</span><span class="st">&quot;100&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">canvas</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>HTML5 还包含地理定位、WebSocket、History API 等能力。</p>
+<h3 id="68-总结">6.8 总结</h3>
+<p>HTML5 的主要更新可以概括为：</p>
+<ul>
+<li>新增语义化标签：<code>nav</code>、<code>header</code>、<code>footer</code>、<code>aside</code>、<code>section</code>、<code>article</code>。</li>
+<li>新增音视频标签：<code>audio</code>、<code>video</code>。</li>
+<li>新增客户端存储：<code>localStorage</code>、<code>sessionStorage</code>。</li>
+<li>新增图形与通信能力：<code>canvas</code>、<code>Geolocation</code>、<code>WebSocket</code>。</li>
+<li>新增表单属性：<code>placeholder</code>、<code>autocomplete</code>、<code>autofocus</code>、<code>required</code>。</li>
+<li>新增 History
+API：<code>go</code>、<code>forward</code>、<code>back</code>、<code>pushState</code>。</li>
+</ul>
+<p>被移除或不推荐的元素包括：</p>
+<ul>
+<li>纯表现类元素，例如 <code>font</code>、<code>center</code>。</li>
+<li>对可用性不友好的元素，例如
+<code>frame</code>、<code>frameset</code>。</li>
+</ul>
+<h2 id="7-img的srcset属性的作用优先级-3考较少">7.
+img的srcset属性的作用？（优先级 3：考较少）</h2>
+<p><code>srcset</code>
+用于在不同设备像素比或不同视口宽度下，为图片提供多个候选资源，让浏览器自动选择更合适的图片。</p>
+<p>按像素密度选择：</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;image-128.png&quot;</span><span class="ot"> srcset</span><span class="op">=</span><span class="st">&quot;image-256.png 2x&quot;</span><span class="ot"> alt</span><span class="op">=</span><span class="st">&quot;&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>上面的写法表示：普通屏幕使用 <code>image-128.png</code>，2 倍屏使用
+<code>image-256.png</code>。</p>
+<p>按宽度候选资源选择：</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">img</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  src</span><span class="op">=</span><span class="st">&quot;image-128.png&quot;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ot">  srcset</span><span class="op">=</span><span class="st">&quot;image-128.png 128w, image-256.png 256w, image-512.png 512w&quot;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ot">  sizes</span><span class="op">=</span><span class="st">&quot;(max-width: 360px) 128px, 340px&quot;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="ot">  alt</span><span class="op">=</span><span class="st">&quot;&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>其中：</p>
+<ul>
+<li><code>srcset</code> 描述候选图片地址和宽度。</li>
+<li><code>sizes</code> 描述图片在不同媒体条件下的显示尺寸。</li>
+<li>浏览器会结合视口、设备像素比和候选资源，自动挑选较合适的图片。</li>
+</ul>
+<h2
+id="8-行内元素有哪些块级元素有哪些-空void元素有那些优先级-1考察很多">8.
+行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？（优先级
+1：考察很多）</h2>
+<p>常见行内元素：</p>
+<ul>
+<li><code>a</code></li>
+<li><code>span</code></li>
+<li><code>img</code></li>
+<li><code>input</code></li>
+<li><code>label</code></li>
+<li><code>select</code></li>
+<li><code>textarea</code></li>
+<li><code>strong</code></li>
+<li><code>em</code></li>
+<li><code>br</code></li>
+</ul>
+<p>常见块级元素：</p>
+<ul>
+<li><code>div</code></li>
+<li><code>p</code></li>
+<li><code>h1</code> 到 <code>h6</code></li>
+<li><code>ul</code></li>
+<li><code>ol</code></li>
+<li><code>li</code></li>
+<li><code>table</code></li>
+<li><code>form</code></li>
+<li><code>header</code></li>
+<li><code>section</code></li>
+<li><code>article</code></li>
+<li><code>footer</code></li>
+</ul>
+<p>常见空元素，也就是没有内容和闭合标签的元素：</p>
+<ul>
+<li><code>br</code></li>
+<li><code>hr</code></li>
+<li><code>img</code></li>
+<li><code>input</code></li>
+<li><code>link</code></li>
+<li><code>meta</code></li>
+<li><code>base</code></li>
+<li><code>area</code></li>
+<li><code>col</code></li>
+<li><code>embed</code></li>
+</ul>
+<h2 id="9-说一下-web-worker优先级-2考较多">9. 说一下 web worker（优先级
+2：考较多）</h2>
+<p>Web Worker 允许在后台线程中运行
+JavaScript。它独立于主线程，可以处理耗时计算，避免阻塞页面渲染和交互。</p>
+<p>基本使用流程：</p>
+<ol type="1">
+<li>创建 Worker 文件，例如 <code>worker.js</code>。</li>
+<li>在主线程中创建 Worker 实例。</li>
+<li>使用 <code>postMessage</code> 发送数据。</li>
+<li>使用 <code>onmessage</code> 接收处理结果。</li>
+</ol>
+<p>主线程：</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> worker <span class="op">=</span> <span class="kw">new</span> <span class="bu">Worker</span>(<span class="st">&quot;worker.js&quot;</span>)<span class="op">;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>worker<span class="op">.</span><span class="fu">postMessage</span>({ <span class="dt">count</span><span class="op">:</span> <span class="dv">100000</span> })<span class="op">;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>worker<span class="op">.</span><span class="at">onmessage</span> <span class="op">=</span> <span class="kw">function</span> (<span class="bu">event</span>) {</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">event</span><span class="op">.</span><span class="at">data</span>)<span class="op">;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<p>Worker 文件：</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>self<span class="op">.</span><span class="at">onmessage</span> <span class="op">=</span> <span class="kw">function</span> (<span class="bu">event</span>) {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> result <span class="op">=</span> <span class="bu">event</span><span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">count</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  self<span class="op">.</span><span class="fu">postMessage</span>(result)<span class="op">;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<p>注意点：</p>
+<ul>
+<li>Worker 不能直接操作 DOM。</li>
+<li>Worker 与主线程之间通过消息通信。</li>
+<li>适合计算密集型任务，不适合频繁传输大量复杂对象。</li>
+</ul>
+<h2 id="10-html5的离线储存怎么使用它的工作原理是什么优先级-3考较少">10.
+HTML5的离线储存怎么使用，它的工作原理是什么（优先级 3：考较少）</h2>
+<p>HTML5 早期提供过 Application Cache 离线缓存机制。它通过
+<code>.appcache</code> 或 manifest
+文件声明需要缓存的资源，使页面在断网时仍可访问。</p>
+<p>页面声明示例：</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">&quot;en&quot;</span><span class="ot"> manifest</span><span class="op">=</span><span class="st">&quot;index.manifest&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>manifest 文件示例：</p>
+<pre class="text"><code>CACHE MANIFEST
+# version 1.0
+
+CACHE:
+index.html
+style.css
+main.js
+
+NETWORK:
+*
+
+FALLBACK:
+/offline.html</code></pre>
+<p>缓存区域含义：</p>
+<ul>
+<li><code>CACHE</code>：声明需要离线缓存的资源。</li>
+<li><code>NETWORK</code>：声明必须联网访问的资源。</li>
+<li><code>FALLBACK</code>：声明请求失败时的替代资源。</li>
+</ul>
+<p>更新缓存的常见方式：</p>
+<ul>
+<li>修改 manifest 文件内容。</li>
+<li>使用 JavaScript 操作缓存状态。</li>
+<li>清除浏览器缓存。</li>
+</ul>
+<p>注意：Application Cache 已经过时，现代项目通常使用 Service Worker 和
+Cache API 实现离线能力。</p>
+<h2
+id="11-浏览器是如何对-html5-的离线储存资源进行管理和加载优先级-3考较少">11.
+浏览器是如何对 HTML5 的离线储存资源进行管理和加载？（优先级
+3：考较少）</h2>
+<p>浏览器管理离线缓存资源时，大致会经历首次访问、后续访问和资源更新几个阶段。</p>
+<ul>
+<li>首次访问：浏览器解析 manifest，下载并缓存声明的资源。</li>
+<li>再次访问：浏览器优先使用已缓存资源展示页面，同时检查 manifest
+是否有变化。</li>
+<li>检测更新：如果 manifest
+文件发生变化，浏览器会重新下载缓存清单中的资源。</li>
+<li>更新完成：新缓存通常在下一次页面加载时生效。</li>
+</ul>
+<p>需要注意的是，Application Cache
+的更新机制不够直观，且容易出现缓存不一致问题，因此现在更推荐使用 Service
+Worker。</p>
+<h2 id="12-title与h1的区别b与strong的区别i与em的区别优先级-2考较多">12.
+title与h1的区别、b与strong的区别、i与em的区别？（优先级 2：考较多）</h2>
+<p><code>title</code> 与 <code>h1</code>：</p>
+<ul>
+<li><code>title</code>
+是文档标题，显示在浏览器标签页、收藏夹和搜索结果中。</li>
+<li><code>h1</code> 是页面内容中的一级标题，显示在页面主体中。</li>
+</ul>
+<p><code>b</code> 与 <code>strong</code>：</p>
+<ul>
+<li><code>b</code> 表示视觉上的加粗，偏表现层。</li>
+<li><code>strong</code> 表示语义上的强调，默认通常也会加粗。</li>
+</ul>
+<p><code>i</code> 与 <code>em</code>：</p>
+<ul>
+<li><code>i</code> 表示视觉上的斜体，偏表现层。</li>
+<li><code>em</code> 表示语义上的强调，默认通常也会斜体。</li>
+</ul>
+<p>面试中可概括为：<code>strong</code> 和 <code>em</code>
+更强调语义，<code>b</code> 和 <code>i</code> 更偏视觉表现。</p>
+<h2 id="13-iframe-有那些优点和缺点优先级-4考很少">13. iframe
+有那些优点和缺点？（优先级 4：考很少）</h2>
+<p><code>iframe</code> 会在当前页面中嵌入另一个 HTML
+文档，形成内联框架。</p>
+<p>优点：</p>
+<ul>
+<li>可以隔离嵌入内容。</li>
+<li>适合加载广告、第三方页面等相对独立的内容。</li>
+<li>可以在特定场景中实现跨子域通信。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>会增加额外页面和请求，影响性能。</li>
+<li>可能阻塞主页面的 <code>onload</code>。</li>
+<li>对 SEO 不友好，内容不一定能被很好索引。</li>
+<li>页面层级和调试复杂度更高。</li>
+<li>需要额外关注安全问题，例如点击劫持和跨域限制。</li>
+</ul>
+<h2 id="14-label-的作用是什么如何使用优先级-3考较少">14. label
+的作用是什么？如何使用？（优先级 3：考较少）</h2>
+<p><code>label</code> 用于把文本说明和表单控件关联起来。点击
+<code>label</code>
+文本时，浏览器会把焦点转移到对应表单控件，提升表单可用性和可访问性。</p>
+<p>写法一：使用 <code>for</code> 关联控件 <code>id</code>。</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">&quot;mobile&quot;</span><span class="dt">&gt;</span>Number:<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;text&quot;</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;mobile&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>写法二：把控件包在 <code>label</code> 内部。</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  Date:</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;text&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span></code></pre></div>
+<h2 id="15-canvas和svg的区别优先级-2考较多">15.
+Canvas和SVG的区别（优先级 2：考较多）</h2>
+<p>SVG 是基于 XML 的矢量图形，Canvas 是基于像素的画布绘制 API。</p>
+<p>SVG 特点：</p>
+<ul>
+<li>不依赖分辨率，缩放不失真。</li>
+<li>每个图形元素都是 DOM 节点，可以绑定事件。</li>
+<li>适合图标、图表、地图等图形数量相对可控的场景。</li>
+<li>图形复杂或节点过多时，性能可能下降。</li>
+</ul>
+<p>Canvas 特点：</p>
+<ul>
+<li>依赖分辨率，本质是像素绘制。</li>
+<li>绘制结果不是 DOM 节点，事件处理需要自行计算坐标。</li>
+<li>适合游戏、粒子效果、频繁重绘的大量图形。</li>
+<li>一旦绘制完成，修改局部内容通常需要重新绘制相关区域。</li>
+</ul>
+<p>简化记忆：SVG 偏“可描述、可操作的矢量对象”，Canvas
+偏“高性能像素画布”。</p>
+<h2 id="16-head-标签有什么作用其中什么标签必不可少优先级-2考较多">16.
+head 标签有什么作用，其中什么标签必不可少？（优先级 2：考较多）</h2>
+<p><code>head</code>
+用于放置文档的元信息，这些信息通常不会直接显示在页面主体中，但会影响页面标题、编码、样式、脚本和搜索引擎识别。</p>
+<p>常见 <code>head</code> 子元素：</p>
+<ul>
+<li><code>title</code></li>
+<li><code>meta</code></li>
+<li><code>link</code></li>
+<li><code>style</code></li>
+<li><code>script</code></li>
+<li><code>base</code></li>
+</ul>
+<p>其中 <code>title</code> 是 <code>head</code>
+中必不可少的元素，用于定义文档标题。</p>
+<p>示例：</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">&quot;UTF-8&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>页面标题<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;style.css&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span></code></pre></div>
+<h2
+id="17-文档声明doctype和有何作用-严格模式与混杂模式如何区分它们有何意义优先级-3考较少">17.
+文档声明（Doctype）和<!Doctype html>有何作用?
+严格模式与混杂模式如何区分？它们有何意义?（优先级 3：考较少）</h2>
+<p>文档声明用于告诉浏览器当前 HTML
+文档采用的规范版本。<code>&lt;!DOCTYPE html&gt;</code> 是 HTML5
+的文档声明，它会让浏览器尽量以标准模式解析页面。</p>
+<p>严格模式与混杂模式的区别：</p>
+<ul>
+<li>标准模式：浏览器按照标准规范渲染页面。</li>
+<li>混杂模式：浏览器模拟旧浏览器行为，用于兼容历史页面。</li>
+</ul>
+<p>判断方式：</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">document</span><span class="op">.</span><span class="at">compatMode</span>)<span class="op">;</span></span></code></pre></div>
+<p>常见结果：</p>
+<ul>
+<li><code>CSS1Compat</code>：标准模式。</li>
+<li><code>BackCompat</code>：怪异模式。</li>
+</ul>
+<p>意义：</p>
+<ul>
+<li>标准模式让不同浏览器的行为更一致。</li>
+<li>混杂模式保证部分旧页面仍能正常显示。</li>
+<li>现代页面应始终使用正确的
+<code>DOCTYPE</code>，避免进入混杂模式。</li>
+</ul>
+<h2 id="18-浏览器乱码的原因是什么如何解决优先级-4考很少">18.
+浏览器乱码的原因是什么？如何解决？（优先级 4：考很少）</h2>
+<p>乱码通常是编码声明、文件实际编码和服务器响应编码不一致导致的。</p>
+<p>常见原因：</p>
+<ul>
+<li>HTML 文件实际使用 <code>GBK</code>，但页面声明为
+<code>UTF-8</code>。</li>
+<li>页面内容是 <code>UTF-8</code>，但服务器响应头声明了其他编码。</li>
+<li>浏览器没有正确识别页面编码。</li>
+</ul>
+<p>解决方式：</p>
+<ul>
+<li>统一文件保存编码、HTML 声明和服务器响应编码。</li>
+<li>在 HTML 中声明编码：</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">&quot;UTF-8&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
+<ul>
+<li>确保服务端响应头与页面编码一致：</li>
+</ul>
+<pre class="http"><code>Content-Type: text/html; charset=UTF-8</code></pre>
+<h2 id="19-渐进增强和优雅降级之间的区别优先级-3考较少">19.
+渐进增强和优雅降级之间的区别（优先级 3：考较少）</h2>
+<p>渐进增强和优雅降级都是处理兼容性的设计思想，但出发点不同。</p>
+<p>渐进增强：</p>
+<ul>
+<li>先保证低版本或能力较弱环境中的基础功能。</li>
+<li>再针对现代浏览器逐步增加更好的交互和视觉体验。</li>
+<li>关注基础可用性和向上增强。</li>
+</ul>
+<p>优雅降级：</p>
+<ul>
+<li>一开始面向现代浏览器构建完整体验。</li>
+<li>再为旧环境做兼容处理，让功能尽量可用。</li>
+<li>关注从完整体验向下兼容。</li>
+</ul>
+<p>核心区别：</p>
+<ul>
+<li>渐进增强是从基础能力向高级体验扩展。</li>
+<li>优雅降级是从完整体验向低能力环境退让。</li>
+</ul>
+<h2 id="20-说一下-html5-drag-api优先级-4考很少">20. 说一下 HTML5 drag
+API（优先级 4：考很少）</h2>
+<p>HTML5 Drag and Drop API 用于实现浏览器原生拖拽交互。</p>
+<p>常见事件：</p>
+<ul>
+<li><code>dragstart</code>：被拖拽元素开始拖拽时触发。</li>
+<li><code>drag</code>：拖拽过程中持续触发。</li>
+<li><code>dragenter</code>：拖拽元素进入目标区域时触发。</li>
+<li><code>dragover</code>：拖拽元素在目标区域上方时持续触发。</li>
+<li><code>dragleave</code>：拖拽元素离开目标区域时触发。</li>
+<li><code>drop</code>：在目标区域释放拖拽元素时触发。</li>
+<li><code>dragend</code>：拖拽操作结束时触发。</li>
+</ul>
+<p>基础示例：</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;drag&quot;</span><span class="ot"> draggable</span><span class="op">=</span><span class="st">&quot;true&quot;</span><span class="dt">&gt;</span>Drag me<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;drop&quot;</span><span class="dt">&gt;</span>Drop here<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> drag <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">&quot;#drag&quot;</span>)<span class="op">;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> drop <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">&quot;#drop&quot;</span>)<span class="op">;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>drag<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">&quot;dragstart&quot;</span><span class="op">,</span> (<span class="bu">event</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">event</span><span class="op">.</span><span class="at">dataTransfer</span><span class="op">.</span><span class="fu">setData</span>(<span class="st">&quot;text/plain&quot;</span><span class="op">,</span> <span class="st">&quot;drag&quot;</span>)<span class="op">;</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>drop<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">&quot;dragover&quot;</span><span class="op">,</span> (<span class="bu">event</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="bu">event</span><span class="op">.</span><span class="fu">preventDefault</span>()<span class="op">;</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>drop<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">&quot;drop&quot;</span><span class="op">,</span> (<span class="bu">event</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>  <span class="bu">event</span><span class="op">.</span><span class="fu">preventDefault</span>()<span class="op">;</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> <span class="bu">event</span><span class="op">.</span><span class="at">dataTransfer</span><span class="op">.</span><span class="fu">getData</span>(<span class="st">&quot;text/plain&quot;</span>)<span class="op">;</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(data)<span class="op">;</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<p>要点：目标区域通常需要在 <code>dragover</code> 中调用
+<code>event.preventDefault()</code>，否则 <code>drop</code>
+事件可能不会触发。</p>
+</body>
+</html>
